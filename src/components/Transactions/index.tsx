@@ -5,7 +5,7 @@ import { TransactionPane } from "./TransactionPane"
 import { SetTransactionApprovalFunction, TransactionsComponent } from "./types"
 
 export const Transactions: TransactionsComponent = ({ transactions }) => {
-  const { fetchWithoutCache, fetchWithCache, clearCache, loading } = useCustomFetch()
+  const { fetchWithoutCache, clearCache, loading } = useCustomFetch()
 
   const setTransactionApproval = useCallback<SetTransactionApprovalFunction>(
     async ({ transactionId, newValue }) => {
@@ -17,7 +17,7 @@ export const Transactions: TransactionsComponent = ({ transactions }) => {
       // clear the cache so new data can be cached later
       clearCache();
     },
-    [fetchWithoutCache]
+    [fetchWithoutCache, clearCache]
   )
 
   if (transactions === null) {
